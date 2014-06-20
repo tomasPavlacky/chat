@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="cs-cz" dir="ltr">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no">
+		<title>Chat</title>
+		<link rel="shortcut icon" href="/img/water.png">
+		<link rel="stylesheet" href="/css/screen.css" type="text/css" media="all">
+	</head>
+	<body>
+		<div id="users"></div>
+		<div id="messages"></div>
+		<form id="formForMessage">
+			<input id="message" type="text" />
+			<input type="submit" value="Odeslat" />
+		</form>
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="/js/chat.js"></script>
+		<script>
+			"use strict";
+			var socket = io.connect("http://" + window.location.host);
+			var dom = {
+				users: document.querySelector("#users"),
+				messages: document.querySelector("#messages"),
+				message: document.querySelector("#message")
+			}
+
+			var chat = new Chat(dom);
+			var chatSystem = new Chat.System(dom);
+		</script>
+	</body>
+</html>

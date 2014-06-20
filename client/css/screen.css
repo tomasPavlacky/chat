@@ -1,0 +1,18 @@
+html,
+body 		{ padding: 0; margin: 0; height: 100%; background-color: #272822; color: white; }
+body 		{ font-family: Helvetica, arial, freesans, clean, sans-serif; position: relative; }
+.hide 		{ display: none; }
+table 		{ table-layout: fixed; text-align: center; border: 6px solid grey; border-collapse: collapse; box-shadow: 1px 1px 4px #000; }
+
+.clear 		{ clear: both; }
+
+#users 			{ position: absolute; right: 0; top: 0; color: #7AD62E;}
+#formForMessage { position: absolute; bottom: 0; left: 0; right: 0; }
+
+input[type="text"] { background-color: inherit; color: white; }
+
+.time 			{ color: #75715E; font-size: 70%; }
+.system 		{ color: #75715E; font-size: 80%; }
+.author 		{ color: #66D9EF; font-size: 70%; }
+.message 		{ font-size: 80%; }
+

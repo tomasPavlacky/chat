@@ -29,7 +29,14 @@ Chat.prototype.usersToHTML = function(users){
 }
 
 Chat.prototype.broadcastMessageToHTML = function(message){
-	this._dom.messages.insertAdjacentHTML("beforeend", "<div><span class='time'>" + message.time + "</span> <span class='author'>" + message.author + ": </span> <span class='message'>" + message.text + "</span></div>")
+	var div = this._dom.messages;
+
+	if (div.scrollHeight == div.scrollTop + div.offsetHeight) {
+		div.insertAdjacentHTML("beforeend", "<div><span class='time'>" + message.time + "</span> <span class='author'>" + message.author + ": </span> <span class='message'>" + message.text + "</span></div>");
+		div.scrollTop = div.scrollHeight;
+	}else{
+		div.insertAdjacentHTML("beforeend", "<div><span class='time'>" + message.time + "</span> <span class='author'>" + message.author + ": </span> <span class='message'>" + message.text + "</span></div>");
+	}
 }
 
 Chat.prototype.handleEvent = function(e){

@@ -8,7 +8,7 @@ require('./server/Chat.js');
 require('./server/ChatCommand.js');
 require('./server/User.js');
 
-app.listen(3300);
+app.listen(parseInt(process.argv[2], 10) || 3300);
 
 function returnFile(row, res, statusCode){
 	var file = fs.readFileSync(__dirname + "/client" + (row.file || row.action));

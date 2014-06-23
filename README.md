@@ -9,7 +9,7 @@ websocketový chat, který běží na nodejs a socketio
 node app.js 8989
 ```
 
-v prohlížeči stačí zadat http://localhost:8989/
+v prohlížeči stačí zadat **http://localhost:8989/**
 
 ###Ovládání
 

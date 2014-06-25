@@ -12,7 +12,7 @@ table 		{ table-layout: fixed; text-align: center; border: 6px solid grey; borde
 
 input[type="text"] { background-color: inherit; color: white; }
 
-.time 			{ color: #75715E; font-size: 70%; }
+.time 			{ color: #75715E; font-size: 70%; margin-right: 1em; }
 .system 		{ color: #75715E; font-size: 80%; }
 .author 		{ color: #66D9EF; font-size: 70%; }
 .message 		{ font-size: 80%; }

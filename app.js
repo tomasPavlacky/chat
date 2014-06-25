@@ -2,7 +2,7 @@ var app = require('http').createServer(handler)
 var io = require('socket.io').listen(app)
 var fs = require('fs')
 var url = require('url')
-var crypto = require('crypto');
+var dateFormat = require('dateformat')
 
 require('./server/Chat.js');
 require('./server/ChatCommand.js');
@@ -33,9 +33,8 @@ function handler (req, res) {
 	}
 }
 
-var chat = new Chat(crypto);
+var chat = new Chat(dateFormat);
 var chatCommand = new Chat.Command(chat);
-//var players = new Players();
 
 io.sockets.on("connection", function (socket) {
 
@@ -48,8 +47,4 @@ io.sockets.on("connection", function (socket) {
 			chat.sendMessage(socket, message);
 		}
 	});
-
-	/*socket.on("disconnect", game.disconnect.bind(game, socket));
-	socket.on("playerHaveAKey", game.playerHaveAKey.bind(game, socket));
-	socket.on("shoot", game.shoot.bind(game, socket));*/
 });

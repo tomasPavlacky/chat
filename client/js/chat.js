@@ -30,13 +30,26 @@ Chat.prototype.usersToHTML = function(users){
 
 Chat.prototype.broadcastMessageToHTML = function(message){
 	var div = this._dom.messages;
+	var newDiv = document.createElement("div");
+	var spanTime = document.createElement("span");
+	var spanAuthor = document.createElement("span");
+	var spanMessage = document.createElement("span");
+	spanTime.classList.add("time");
+	spanTime.innerHTML = message.time;
+	spanAuthor.classList.add("author");
+	spanAuthor.innerHTML = message.author + ": ";
+	spanMessage.classList.add("message");
+	spanMessage.innerText = message.text;
 
-	if (div.scrollHeight == div.scrollTop + div.offsetHeight) {
-		div.insertAdjacentHTML("beforeend", "<div><span class='time'>" + message.time + "</span> <span class='author'>" + message.author + ": </span> <span class='message'>" + message.text + "</span></div>");
-		div.scrollTop = div.scrollHeight;
-	}else{
-		div.insertAdjacentHTML("beforeend", "<div><span class='time'>" + message.time + "</span> <span class='author'>" + message.author + ": </span> <span class='message'>" + message.text + "</span></div>");
-	}
+	newDiv.appendChild(spanTime);
+	newDiv.appendChild(spanAuthor);
+	newDiv.appendChild(spanMessage);
+
+	div.appendChild(newDiv);
+
+	// jestli neni odscrollovano tak posuneme scrollTop dolu
+	if (div.scrollHeight == div.scrollTop + div.offsetHeight) { div.scrollTop = div.scrollHeight; }
+
 }
 
 Chat.prototype.handleEvent = function(e){

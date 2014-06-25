@@ -7,8 +7,6 @@ Chat.Command = function(chat){
  * @param  {{}} socket
  */
 Chat.Command.prototype.parse = function(message, socket){
-    console.log("****")
-    console.log(message)
     if (/^\/nick [a-zA-Z0-9]+/.test(message)) {
         var newNick = message.replace("/nick ", "");
         var user = this._chat.getUserOverSocketId(socket.id);

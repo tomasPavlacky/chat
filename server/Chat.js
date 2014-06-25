@@ -1,6 +1,9 @@
-Chat = function(crypto){
+/**
+ * @param {DateFormat} dateFormat
+ */
+Chat = function(dateFormat){
 	this._users = [];
-	this._crypto = crypto;
+	this._dateFormat = dateFormat;
 
 	this._chatCommand = new Chat.Command(this);
 }
@@ -81,7 +84,7 @@ Chat.prototype.sendMessage = function(socket, data){
 	var message = {
 		author: this.getUserOverSocketId(socket.id).getNick(),
 		text: data.text,
-		time: date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds()
+		time: this._dateFormat("GMT:hh:MM:ss")
 	};
 
 	socket.broadcast.emit("broadcastMessage", message);

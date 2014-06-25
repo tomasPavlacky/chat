@@ -1,6 +1,7 @@
 MessageType = function(){
     this._regExps = {
-        email: /((([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,})))/g
+        email: /((([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,})))/g,
+        http: /((http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?)/g
     }
 }
 
@@ -23,6 +24,12 @@ MessageType.prototype.addType = function(message){
 
 MessageType.prototype._email = function(message){
     message.textWrapped = message.text.replace(this._regExps.email, "<a href='mailto:$1'>$1</a>");
+
+    return message;
+}
+
+MessageType.prototype._http = function(message){
+    message.textWrapped = message.text.replace(this._regExps.http, "<a target='_blank' href='$1'>$1</a>");
 
     return message;
 }

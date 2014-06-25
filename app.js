@@ -7,6 +7,7 @@ var dateFormat = require('dateformat')
 require('./server/Chat.js');
 require('./server/ChatCommand.js');
 require('./server/User.js');
+require('./server/MessageType.js');
 
 app.listen(parseInt(process.argv[2], 10) || 3300);
 
@@ -33,7 +34,8 @@ function handler (req, res) {
 	}
 }
 
-var chat = new Chat(dateFormat);
+var messageType = new MessageType();
+var chat = new Chat(dateFormat, messageType);
 var chatCommand = new Chat.Command(chat);
 
 io.sockets.on("connection", function (socket) {

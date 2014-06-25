@@ -38,8 +38,15 @@ Chat.prototype.broadcastMessageToHTML = function(message){
 	spanTime.innerHTML = message.time;
 	spanAuthor.classList.add("author");
 	spanAuthor.innerHTML = message.author + ": ";
+
 	spanMessage.classList.add("message");
-	spanMessage.innerText = message.text;
+
+	if (message.type == "text") {
+		spanMessage.innerText = message.text;
+	}else{
+		spanMessage.innerHTML = message.textWrapped;
+	}
+
 
 	newDiv.appendChild(spanTime);
 	newDiv.appendChild(spanAuthor);

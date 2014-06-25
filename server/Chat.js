@@ -1,9 +1,11 @@
 /**
  * @param {DateFormat} dateFormat
+ * @param {MessageType} messageType
  */
-Chat = function(dateFormat){
+Chat = function(dateFormat, messageType){
 	this._users = [];
 	this._dateFormat = dateFormat;
+	this._messageType = messageType;
 
 	this._chatCommand = new Chat.Command(this);
 }
@@ -87,7 +89,8 @@ Chat.prototype.sendMessage = function(socket, data){
 		time: this._dateFormat("GMT:hh:MM:ss")
 	};
 
+	message = this._messageType.addType(message);
+
 	socket.broadcast.emit("broadcastMessage", message);
 	socket.emit("broadcastMessage", message);
-
 }

@@ -17,3 +17,10 @@ input[type="text"] { background-color: inherit; color: white; }
 .author 		{ color: #66D9EF; font-size: 70%; }
 .message 		{ font-size: 80%; }
 
+a,
+a:visited,
+a:hover,
+a:active {
+    color: #AB6D9B;
+    text: none;
+}

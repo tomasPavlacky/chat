@@ -42,7 +42,7 @@ Chat.prototype.broadcastMessageToHTML = function(message){
 	spanMessage.classList.add("message");
 
 	if (message.type == "text") {
-		spanMessage.innerText = message.text;
+		spanMessage.textContent = message.text;
 	}else{
 		spanMessage.innerHTML = message.textWrapped;
 	}

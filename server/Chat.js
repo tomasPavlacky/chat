@@ -82,15 +82,21 @@ Chat.prototype.getUsers = function(){
 }
 
 Chat.prototype.sendMessage = function(socket, data){
-	var date = new Date();
-	var message = {
-		author: this.getUserOverSocketId(socket.id).getNick(),
-		text: data.text,
-		time: this._dateFormat("GMT:hh:MM:ss")
-	};
+	var user = this.getUserOverSocketId(socket.id);
 
-	message = this._messageType.addType(message);
+	if (user) { // pokud je otevreny chat v prohlizeci, vypne se a zapne server, tak uzivatel nema aktualni websocket id
+		var date = new Date();
+		var message = {
+			author: user.getNick(),
+			text: data.text,
+			time: this._dateFormat("GMT:hh:MM:ss")
+		};
 
-	socket.broadcast.emit("broadcastMessage", message);
-	socket.emit("broadcastMessage", message);
+		message = this._messageType.addType(message);
+
+		socket.broadcast.emit("broadcastMessage", message);
+		socket.emit("broadcastMessage", message);
+	}else{
+		socket.emit("systemMessage", "Zkus refresh prohlížeče ctrl + r");
+	}
 }
